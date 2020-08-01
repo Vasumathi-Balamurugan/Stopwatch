@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1><time>00:00:00</time></h1>
+<button id="start">start</button>
+<button id="stop">stop</button>
+<button id="reset">reset</button>
+<script>
+    var h1 = document.getElementsByTagName('h1')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear= document.getElementById('reset'),
+    s = 0, m = 0, h= 0,t;
+function add() {
+    s++;
+    if (s >= 60) {
+        s = 0;
+        m++;
+        if (m >= 60) {
+            m = 0;
+            h++;
+        }
+    }
+    timer();
+}
+ var x=Number(prompt("Enter mins:"));
+ var y=Number(prompt("Enter sec:"));
+ console.log("Stop_Min= "+x+" and Stop_Sec= "+y);
+function timer() {
+    console.log("Timer Started");
+    if(m==x&&s==y){
+      h1.textContent = "00:00:00";
+      console.log("Timer Ended--Reached the given Time.");
+   //reset.onclick = function() {
+   //h1.textContent = "00:00:00";
+   //s= 0; m = 0; h= 0;
+//}
+    }
+    else{
+    h1.textContent=(h?(h>9?h:"0"+h):"00")+":"+(m?(m>9?m:"0"+m):"00") +":"+(s?(s>9?s:"0"+s):"00");
+    t = setTimeout(add, 1000);
+    }
+}
+//timer();
+start.onclick = timer;
+stop.onclick = function() {
+    clearTimeout(t);
+    console.log("Timer Stopped");
+}
+reset.onclick = function() {
+    h1.textContent = "00:00:00";
+    s = 0; m = 0; h = 0;
+}
+</script>
+    </body>
+</html>
